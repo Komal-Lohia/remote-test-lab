@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+lab.db
+snapshots/
+results/
+logs/
+sim/state/
+sim/HANG-*
+certs/lab.key
+certs/lab.crt
+certs/renew.log
+.env

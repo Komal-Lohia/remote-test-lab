@@ -1,0 +1,27 @@
+lab_name: Virtual Remote Test Lab
+devices:
+  - name: router
+    type: host
+    address: 8.8.8.8            # internet check; use your router IP if you like
+  - name: controller-01
+    type: ssh
+    address: 127.0.0.1
+    port: 2221
+  - name: controller-02
+    type: ssh
+    address: 127.0.0.1
+    port: 2222
+  - name: cam-01
+    type: camera
+    url: http://localhost:8080/shot.jpg
+  - name: board-01
+    type: board
+    port: /tmp/board-01
+    firmware_version: "1.0.0"
+    reset_cmd: "rm -f sim/HANG-board-01"
+  - name: board-02
+    type: board
+    port: /tmp/board-02
+    firmware_version: "1.0.0"
+    reset_cmd: "rm -f sim/HANG-board-02"
+    

@@ -1,0 +1,8 @@
+pyserial
+pyyaml
+requests
+flask
+cryptography
+pytest
+mpremote
+pillow
