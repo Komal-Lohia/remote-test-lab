@@ -1,0 +1,8 @@
+[Unit]
+Description=Test lab health check
+
+[Service]
+Type=oneshot
+User=Komal
+WorkingDirectory=/home/Komal/remote-test-lab
+ExecStart=/home/Komal/remote-test-lab/.venv/bin/python -m lab.monitor

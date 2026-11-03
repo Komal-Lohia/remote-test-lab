@@ -1,0 +1,12 @@
+[Unit]
+Description=Fake IP camera
+After=lab-board@board-01.service
+
+[Service]
+User=Komal
+WorkingDirectory=/home/Komal/remote-test-lab
+ExecStart=/home/Komal/remote-test-lab/.venv/bin/python sim/fake_camera.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,15 @@
+[Unit]
+Description=Test lab dashboard (HTTPS)
+After=network-online.target lab-camera.service
+Wants=network-online.target
+
+[Service]
+User=Komal
+WorkingDirectory=/home/Komal/remote-test-lab
+EnvironmentFile=/home/Komal/remote-test-lab/.env
+ExecStart=/home/Komal/remote-test-lab/.venv/bin/python -m dashboard.app
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

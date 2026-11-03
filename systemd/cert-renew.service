@@ -1,0 +1,6 @@
+[Unit]
+Description=Renew the lab SSL certificate if needed
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /home/Komal/remote-test-lab/certs/renew_if_needed.sh

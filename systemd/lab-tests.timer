@@ -1,0 +1,9 @@
+[Unit]
+Description=Run board tests every night at 02:00
+
+[Timer]
+OnCalendar=*-*-* 02:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

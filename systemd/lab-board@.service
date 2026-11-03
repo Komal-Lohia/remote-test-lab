@@ -1,0 +1,11 @@
+[Unit]
+Description=Fake test board %i
+
+[Service]
+User=Komal
+WorkingDirectory=/home/Komal/remote-test-lab
+ExecStart=/home/Komal/remote-test-lab/.venv/bin/python sim/fake_board.py --name %i
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
