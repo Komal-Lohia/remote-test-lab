@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="30">
+  <title>{{ lab }}</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; color: #1b2a49; }
+    table { border-collapse: collapse; margin-bottom: 1.5rem; }
+    th, td { border-bottom: 1px solid #ddd; padding: .4rem .8rem; text-align: left; }
+    .UP { color: #137333; font-weight: 600; }
+    .DOWN { color: #c5221f; font-weight: 600; }
+    .RECOVERED { color: #b06000; font-weight: 600; }
+    form { display: inline; }
+    button { padding: .4rem 1rem; margin-right: .5rem; }
+    img { max-width: 360px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>{{ lab }}</h1>
+  <p>
+    <form method="post" action="/check"><button>Check devices now</button></form>
+    <form method="post" action="/run-tests"><button>Run board tests</button></form>
+    SSL certificate: {% if cert_days is none %}missing{% else %}{{ cert_days }} days left{% endif %}
+  </p>
+
+  <h2>Devices</h2>
+  <table>
+    <tr><th>Device</th><th>Type</th><th>Status</th><th>Latency</th><th>Detail</th><th>Checked</th></tr>
+    {% for d in devices %}
+    <tr><td>{{ d.device }}</td><td>{{ d.type }}</td><td class="{{ d.status }}">{{ d.status }}</td>
+        <td>{{ d.latency_ms or '' }}</td><td>{{ d.detail }}</td><td>{{ d.ts }}</td></tr>
+    {% endfor %}
+  </table>
+
+  <h2>Last test runs</h2>
+  <table>
+    <tr><th>Time</th><th>Passed</th><th>Failed</th><th>Duration</th><th>Evidence</th></tr>
+    {% for r in runs %}
+    <tr><td>{{ r.ts }}</td><td>{{ r.passed }}</td><td class="{{ 'DOWN' if r.failed else 'UP' }}">{{ r.failed }}</td>
+        <td>{{ r.duration_s }} s</td>
+        <td>{% if r.snapshot %}<a href="/snapshots/{{ r.snapshot }}">photo</a>{% endif %}</td></tr>
+    {% endfor %}
+  </table>
+  {% if runs and runs[0].snapshot %}<img src="/snapshots/{{ runs[0].snapshot }}" alt="latest camera snapshot">{% endif %}
+
+  <h2>Recent alerts</h2>
+  <ul>{% for a in alerts %}<li>{{ a.ts }} – {{ a.device }}: {{ a.old_status }} → {{ a.new_status }}</li>{% endfor %}</ul>
+</body>
+</html>
