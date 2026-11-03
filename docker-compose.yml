@@ -1,0 +1,28 @@
+# Two virtual "test controllers" with SSH, like the Raspberry Pis in a real lab.
+services:
+  controller-01:
+    image: lscr.io/linuxserver/openssh-server:latest
+    container_name: controller-01
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - USER_NAME=lab
+      - USER_PASSWORD=lab123
+      - PASSWORD_ACCESS=true
+    ports:
+      - "2221:2222"
+    restart: unless-stopped
+  controller-02:
+    image: lscr.io/linuxserver/openssh-server:latest
+    container_name: controller-02
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - USER_NAME=lab
+      - USER_PASSWORD=lab123
+      - PASSWORD_ACCESS=true
+    ports:
+      - "2222:2222"
+    restart: unless-stopped
