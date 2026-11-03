@@ -10,3 +10,4 @@ certs/lab.key
 certs/lab.crt
 certs/renew.log
 .env
+.pytest_cache/
