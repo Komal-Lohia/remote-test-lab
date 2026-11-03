@@ -46,6 +46,7 @@ Then open https://localhost:8443.
 ![Tests](docs/images/tests.png)
 
 ## Self-healing
+A stuck board is reset automatically and a stopped controller is reported, then marked UP again once it is back:
 ![Recovery](docs/images/recovery.png)
 
 ## Troubleshooting
